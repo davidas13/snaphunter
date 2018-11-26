@@ -21,3 +21,5 @@ __version_info__    = (0, 0, 0)
 __version__         = 'v%i.%02i.%02i' % __version_info__
 __revision__        = __version__
 
+
+#from PyQt5 import QtGui
