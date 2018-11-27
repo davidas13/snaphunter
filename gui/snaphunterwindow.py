@@ -20,33 +20,29 @@ __email__       = 'david.agung.satrio@gmail.com'
 #=========================================================
 # Configuration
 #=========================================================
-import sys
+import os
+from PyQt5 import QtCore
 from PyQt5 import QtGui
 from PyQt5 import QtWidgets
+import PyQt5.uic
 
 #=========================================================
 # Main Script
 #=========================================================
-def main(argv = None):
+class SnaphunterWindow(QtWidgets.QMainWindow):
 
-    app = None
-
-    if not QtWidgets.QApplication.instance():
-        app = QtWidgets.QApplication(argv)
-        app.setStyle('plastique')
-
-    #QtWidgets.QMessageBox.information(None, 'Stub', 'Create the Main Window!')
-    # create the main window
-    from gui.snaphunterwindow import SnaphunterWindow
-    window = SnaphunterWindow()
-    window.show()
-
-    if app:
-        return app.exec_()
-
-    # return 0
-
-
-
-if __name__ == '__main__':
-    sys.exit(main(sys.argv))
+    def __init__( self, parent = None ):
+        """
+        Snaphunter Window, put window from QMainWindow
+        
+        Keyword Arguments:
+            parent {Object} -- parent from QMainWindow (default: {None})
+        """
+        
+        super(SnaphunterWindow, self).__init__(parent)
+        
+        # load the ui
+        basepath = os.path.dirname(__file__)
+        basename = self.__class__.__name__.lower()
+        uifile   = os.path.join(basepath, 'ui/{}.ui'.format(basename))
+        PyQt5.uic.loadUi(uifile, self)
